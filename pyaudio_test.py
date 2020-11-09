@@ -3,12 +3,13 @@ import wave
 import sys
 import librosa
 
+
 def read_and_write_audio():
     CHUNK = 1024
     sample_format = pyaudio.paInt16
     channels = 2
     fs = 44100
-    seconds = 3
+    seconds = 7
     filename = 'test.wav'
 
 
@@ -40,7 +41,8 @@ def read_and_write_audio():
 
     return filename
 
-def get_pitch(filename= read_and_write_audio()):
+
+def get_pitch(filename):
     x, sr_ = librosa.load(filename)
     pitches, mags = librosa.piptrack(y=x,sr=sr_)
     index = mags[:,128].argmax()
@@ -48,8 +50,9 @@ def get_pitch(filename= read_and_write_audio()):
     note_name = librosa.hz_to_note(pitch)
     
     if len(note_name) > 2:
-        return note_name[0:2]
+        return f'{note_name[0]}#'
     return note_name[0]
+
 
 
 
