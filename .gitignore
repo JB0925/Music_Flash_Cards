@@ -2,3 +2,4 @@
 __pycache__
 *.wav
 *.stackdump
+.DS_Store
